@@ -344,7 +344,50 @@ function openModal(id) {
 
 function closeModal() {
   modal.classList.add('hidden');
-  document.body.style.overflow = '';
+}
+
+// Ranking Logic
+function showRanking() {
+  document.querySelectorAll('.uni-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
+  
+  // reset state to show top 10 regardless of filters
+  currentState.activeUni = 'all';
+  currentState.activeCategory = 'all';
+  currentState.searchQuery = '';
+  
+  // Custom Render for Rankings
+  const top10 = [...mockRestaurants].sort((a, b) => b.rating - a.rating).slice(0, 5); // top 5
+  
+  restaurantGrid.innerHTML = top10.map((res, index) => {
+    const isFav = currentState.favorites.includes(res.id);
+    let medalColor = index === 0 ? '#fbbf24' : (index === 1 ? '#94a3b8' : (index === 2 ? '#b45309' : '#fff'));
+    let shadowColor = index === 0 ? 'rgba(251, 191, 36, 0.4)' : (index === 1 ? 'rgba(148, 163, 184, 0.4)' : 'rgba(255,255,255,0.05)');
+    return `
+    <div class="res-card glass-card" onclick="openModal(${res.id})" style="border: 2px solid ${index < 3 ? medalColor : 'rgba(255,255,255,0.1)'}; box-shadow: 0 8px 32px ${shadowColor};">
+      <div class="card-img">
+        <div style="position: absolute; top:0; left:0; right:0; bottom:0; padding:1.5rem; background: linear-gradient(to right, rgba(0,0,0,0.8), transparent); z-index: 1;">
+           <span style="font-size:3rem; font-weight:900; color:${medalColor}; opacity:0.9; text-shadow: 0 0 10px rgba(0,0,0,0.5);">NO.${index+1}</span>
+        </div>
+        <img src="${res.image}" alt="${res.name}" loading="lazy" style="filter: brightness(0.8);">
+        <button class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFav(event, ${res.id})" title="收藏" style="z-index: 2;">
+          <i class="${isFav ? 'ri-heart-3-fill' : 'ri-heart-3-line'}"></i>
+        </button>
+      </div>
+      <div class="card-info">
+        <div class="card-title-row">
+          <h3 class="card-title">${res.name}</h3>
+          <span class="card-rating" style="font-size: 1.2rem; color: #fbbf24;"><i class="ri-star-fill"></i> ${res.rating}</span>
+        </div>
+        <div class="card-meta">
+          <span><i class="ri-fire-fill" style="color:#ef4444"></i> 入选大学城必吃榜</span>
+        </div>
+      </div>
+    </div>
+  `}).join('');
+  
+  // Smooth scroll
+  document.getElementById('restaurantGrid').scrollIntoView({ behavior: 'smooth' });
 }
 
 // Profile Modal Logic
