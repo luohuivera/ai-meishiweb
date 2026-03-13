@@ -6,7 +6,9 @@ let currentState = {
   view: 'grid', // 'grid' | 'map'
   searchQuery: '',
   favorites: [],
-  checkins: []
+  checkins: [],
+  isLoggedIn: false,
+  username: ''
 };
 
 // DOM Elements
@@ -88,8 +90,52 @@ function renderRestaurants() {
 }
 
 // Actions
+function checkLogin() {
+  if (!currentState.isLoggedIn) {
+    document.getElementById('authModal').classList.remove('hidden');
+    return false;
+  }
+  return true;
+}
+
+function handleUserClick() {
+  if (currentState.isLoggedIn) {
+    openProfileTab('checkins');
+  } else {
+    document.getElementById('authModal').classList.remove('hidden');
+  }
+}
+
+function closeAuthModal() {
+  document.getElementById('authModal').classList.add('hidden');
+}
+
+function performLogin() {
+  const username = document.getElementById('usernameInput').value || '同学';
+  currentState.isLoggedIn = true;
+  currentState.username = username;
+  
+  document.getElementById('userNameText').innerText = username;
+  document.getElementById('userIcon').classList.replace('ri-user-line', 'ri-user-star-fill');
+  document.getElementById('userLoginBtn').style.borderColor = 'var(--primary)';
+  document.getElementById('userLoginBtn').style.color = 'var(--primary)';
+  
+  closeAuthModal();
+}
+
+function performLogout() {
+  currentState.isLoggedIn = false;
+  document.getElementById('userNameText').innerText = '登录';
+  document.getElementById('userIcon').classList.replace('ri-user-star-fill', 'ri-user-line');
+  document.getElementById('userLoginBtn').style.borderColor = 'rgba(255,255,255,0.2)';
+  document.getElementById('userLoginBtn').style.color = '';
+  closeProfileModal();
+}
+
 function toggleFav(e, id) {
   e.stopPropagation(); // prevent modal from opening when clicking fav
+  if (!checkLogin()) return;
+
   if (currentState.favorites.includes(id)) {
     currentState.favorites = currentState.favorites.filter(fId => fId !== id);
   } else {
@@ -99,6 +145,8 @@ function toggleFav(e, id) {
 }
 
 function toggleCheckin(id) {
+  if (!checkLogin()) return;
+
   if (currentState.checkins.includes(id)) {
     currentState.checkins = currentState.checkins.filter(cId => cId !== id);
   } else {
@@ -108,6 +156,7 @@ function toggleCheckin(id) {
 }
 
 function toggleReviewInput() {
+  if (!checkLogin()) return;
   const reviewArea = document.getElementById('reviewInputArea');
   if (reviewArea) {
     reviewArea.classList.toggle('show');
@@ -118,13 +167,14 @@ function toggleReviewInput() {
 }
 
 function submitReview(id) {
+  if (!checkLogin()) return;
   const input = document.getElementById('reviewText');
   const text = input.value.trim();
   if (!text) return;
 
   const res = mockRestaurants.find(r => r.id === id);
   if (res) {
-    res.reviews.unshift({ user: "我 (当前用户)", text: text });
+    res.reviews.unshift({ user: currentState.username, text: text });
     input.value = '';
     openModal(id); // Re-render to show new review
   }
@@ -295,6 +345,56 @@ function openModal(id) {
 function closeModal() {
   modal.classList.add('hidden');
   document.body.style.overflow = '';
+}
+
+// Profile Modal Logic
+function openProfileTab(tab) {
+  if (!checkLogin()) return;
+  
+  document.getElementById('profileModal').classList.remove('hidden');
+  document.getElementById('profileName').innerText = currentState.username;
+  document.getElementById('profileAvatar').src = `https://ui-avatars.com/api/?name=${encodeURIComponent(currentState.username)}&background=ff6b00&color=fff`;
+  
+  switchProfileTab(tab);
+}
+
+function closeProfileModal() {
+  document.getElementById('profileModal').classList.add('hidden');
+}
+
+function switchProfileTab(tab) {
+  document.getElementById('tabCheckins').classList.toggle('active', tab === 'checkins');
+  document.getElementById('tabFavorites').classList.toggle('active', tab === 'favorites');
+  
+  document.getElementById('countCheckins').innerText = currentState.checkins.length;
+  document.getElementById('countFavorites').innerText = currentState.favorites.length;
+  
+  const container = document.getElementById('profileContent');
+  const ids = tab === 'checkins' ? currentState.checkins : currentState.favorites;
+  
+  if (ids.length === 0) {
+    container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 4rem 0;">
+      <i class="ri-ghost-smile-line" style="font-size: 3rem; margin-bottom: 1rem; display: block; color: var(--text-muted);"></i>
+      还没有记录呢，快去探索美食吧！
+    </div>`;
+    return;
+  }
+  
+  // Render mini cards
+  container.innerHTML = ids.map(id => {
+    const res = mockRestaurants.find(r => r.id === id);
+    if (!res) return '';
+    return `
+      <div class="glass-card res-card" style="padding: 1rem; cursor: pointer; display: block;" onclick="closeProfileModal(); openModal(${res.id});">
+        <div style="height: 120px; border-radius: 8px; overflow: hidden; margin-bottom: 0.8rem;">
+          <img src="${res.image}" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div style="font-weight: 700; font-size: 1.1rem; color: #fff; margin-bottom: 0.3rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${res.name}</div>
+        <div style="color: var(--accent-yellow); font-size: 0.9rem; margin-bottom: 0.5rem; font-weight: 600;"><i class="ri-star-fill"></i> ${res.rating} 分</div>
+        <div style="color: var(--text-muted); font-size: 0.85rem;"><i class="ri-map-pin-2-line"></i> ${res.category}</div>
+      </div>
+    `;
+  }).join('');
 }
 
 // Run!
