@@ -637,6 +637,12 @@ ul, ol { list-style: none; }
 }
 .review-textarea:focus { border-color: var(--primary); }
 
+/* Dianping Link Button Hover */
+.dp-link-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255,102,51,0.4) !important;
+}
+
 .submit-review-btn {
   background: var(--primary);
   color: #fff;

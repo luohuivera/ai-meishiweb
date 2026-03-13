@@ -23,7 +23,8 @@ const mockRestaurants = [
     reviews: [
       { user: "PKU_小明", text: "每次打完球都要来吃，鱼烤得很脆，够味！" },
       { user: "吃货学姐", text: "毕业前的聚餐首选，回忆满满。" }
-    ]
+    ],
+    dianping: { rating: 4.5, reviewCount: 1250, avgPrice: 85, url: "https://m.dianping.com" }
   },
   {
     id: 2,
@@ -41,7 +42,8 @@ const mockRestaurants = [
     reviews: [
       { user: "THU_摄影社", text: "店面装修很好看，拍照很出片，寿司味道也不错。" },
       { user: "日料狂魔", text: "三文鱼厚切好评，品质在大学城算很好的了！" }
-    ]
+    ],
+    dianping: { rating: 4.8, reviewCount: 890, avgPrice: 70, url: "https://m.dianping.com" }
   },
   {
     id: 3,
@@ -59,7 +61,8 @@ const mockRestaurants = [
     reviews: [
       { user: "HIT_工科女生", text: "减脂期每天都吃，酱料可以单独装，很贴心。" },
       { user: "哈工跑团", text: "分量真的很足，碳水蛋白质搭配合理。" }
-    ]
+    ],
+    dianping: { rating: 4.9, reviewCount: 2300, avgPrice: 35, url: "https://m.dianping.com" }
   },
   {
     id: 4,
@@ -77,7 +80,8 @@ const mockRestaurants = [
     reviews: [
       { user: "清华卷王", text: "夏天复习完来吃一碗冰，简直复活。" },
       { user: "甜品控", text: "芋泥爱好者的天堂，一点都不腻。" }
-    ]
+    ],
+    dianping: { rating: 4.7, reviewCount: 1560, avgPrice: 28, url: "https://m.dianping.com" }
   },
   {
     id: 5,
@@ -95,7 +99,8 @@ const mockRestaurants = [
     reviews: [
       { user: "北大干饭人", text: "社团聚餐经常来，非常下饭，肉炒得很香！" },
       { user: "无辣不欢", text: "真的辣但是真的过瘾。" }
-    ]
+    ],
+    dianping: { rating: 4.6, reviewCount: 3100, avgPrice: 60, url: "https://m.dianping.com" }
   },
   {
     id: 6,
@@ -112,7 +117,8 @@ const mockRestaurants = [
     signatureDishes: ["经典双层芝士堡", "现炸粗薯", "香草奶昔"],
     reviews: [
       { user: "HIT_滑板社", text: "肉饼汁水很多，芝士无敌香，汉堡爱好者狂喜。" }
-    ]
+    ],
+    dianping: { rating: 4.5, reviewCount: 880, avgPrice: 48, url: "https://m.dianping.com" }
   },
   {
     id: 7,
@@ -129,7 +135,8 @@ const mockRestaurants = [
     signatureDishes: ["招牌猪脚饭", "鸭腿拼饭", "卤蛋肉卷饭"],
     reviews: [
       { user: "肝论文中", text: "男人的浪漫就是一碗猪脚饭，肥而不腻，绝了。" }
-    ]
+    ],
+    dianping: { rating: 4.2, reviewCount: 560, avgPrice: 25, url: "https://m.dianping.com" }
   },
   {
     id: 8,
@@ -146,7 +153,8 @@ const mockRestaurants = [
     signatureDishes: ["特浓豚骨拉面", "日式炸鸡块", "可乐饼"],
     reviews: [
       { user: "熬夜画图", text: "半夜两点从实验室出来能吃上一碗热腾腾的面，太幸福了。" }
-    ]
+    ],
+    dianping: { rating: 4.8, reviewCount: 1100, avgPrice: 38, url: "https://m.dianping.com" }
   },
   {
     id: 9,
@@ -163,7 +171,8 @@ const mockRestaurants = [
     signatureDishes: ["伯牙绝弦", "寻香山茶", "青青糯山"],
     reviews: [
       { user: "天天想喝", text: "伯牙绝弦yyds，喝不腻！" }
-    ]
+    ],
+    dianping: { rating: 4.9, reviewCount: 5500, avgPrice: 20, url: "https://m.dianping.com" }
   },
   {
     id: 10,
@@ -180,7 +189,8 @@ const mockRestaurants = [
     signatureDishes: ["大刀毛肚", "冰川鹅肠", "麻辣牛肉"],
     reviews: [
       { user: "清华川菜狂热粉", text: "红锅很给力，够辣，团建好去处。" }
-    ]
+    ],
+    dianping: { rating: 4.7, reviewCount: 4200, avgPrice: 120, url: "https://m.dianping.com" }
   },
   {
     id: 11,
@@ -197,7 +207,8 @@ const mockRestaurants = [
     signatureDishes: ["豪华霸王烤冷面", "加虾条加肉松"],
     reviews: [
       { user: "夜跑选手", text: "跑完步来一份，罪恶又快乐！大叔人超好。" }
-    ]
+    ],
+    dianping: { rating: 4.9, reviewCount: 300, avgPrice: 18, url: "https://m.dianping.com" }
   },
   {
     id: 12,
@@ -214,6 +225,7 @@ const mockRestaurants = [
     signatureDishes: ["黑松露蘑菇意面", "经典茄汁肉酱面", "南瓜浓汤"],
     reviews: [
       { user: "安静学习", text: "环境很适合看书，意面也很地道。" }
-    ]
+    ],
+    dianping: { rating: 4.4, reviewCount: 650, avgPrice: 60, url: "https://m.dianping.com" }
   }
 ];

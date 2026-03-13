@@ -289,6 +289,25 @@ function openModal(id) {
         <button class="nav-btn"><i class="ri-navigation-fill"></i> 一键导航</button>
       </div>
 
+      <!-- Dianping Block -->
+      <div class="dianping-block glass-card" style="display: flex; justify-content: space-between; align-items: center; padding: 1.2rem; margin-bottom: 1.5rem; background: rgba(255, 106, 0, 0.05); border-left: 4px solid var(--primary); border-radius: 8px;">
+        <div style="display: flex; flex-direction: column; gap: 0.3rem;">
+           <div style="display:flex; align-items:center; gap:0.5rem; font-weight:800; font-size:1.1rem; color: #fff;">
+             <i class="ri-store-3-fill" style="color: var(--primary); font-size: 1.2rem;"></i> 大众点评
+           </div>
+           <div style="color: var(--text-muted); font-size: 0.95rem;">
+             ⭐️ 综合评分 <span style="color:#fbbf24; font-weight:bold">${res.dianping.rating}</span> 
+             <span style="margin:0 0.5rem">|</span> 
+             📝 ${res.dianping.reviewCount}+ 条求真评价 
+             <span style="margin:0 0.5rem">|</span> 
+             💰 人均 ¥${res.dianping.avgPrice}
+           </div>
+        </div>
+        <a href="${res.dianping.url}" target="_blank" class="dp-link-btn" style="background:#f63; color:#fff; padding:0.6rem 1.2rem; border-radius:30px; font-weight:600; font-size:0.95rem; text-decoration:none; display:flex; align-items:center; gap:0.3rem; transition: transform 0.2s; box-shadow: 0 4px 12px rgba(255,102,51,0.3);">
+          去 App 看详情 <i class="ri-arrow-right-s-line"></i>
+        </a>
+      </div>
+
       <div class="modal-actions-row">
         <button class="checkin-btn" onclick="toggleCheckin(${id})">
           <i class="${isCheckedIn ? 'ri-map-pin-user-fill' : 'ri-map-pin-add-line'}"></i> 
