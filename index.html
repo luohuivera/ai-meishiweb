@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>大学城美食地图 | 发现最好吃的那家店</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  
+  <!-- Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation / Header -->
+  <nav class="navbar glass">
+    <div class="nav-content">
+      <div class="logo">
+        <i class="ri-map-pin-user-fill"></i>
+        <span>大学城美食地图</span>
+      </div>
+      
+      <div class="search-bar">
+        <i class="ri-search-line"></i>
+        <input type="text" id="searchInput" placeholder="搜索餐厅、菜系、食物...">
+      </div>
+
+      <div class="nav-links">
+        <button class="icon-btn" title="我的收藏" aria-label="Favorites"><i class="ri-heart-3-line"></i></button>
+        <button class="icon-btn" title="随写点评" aria-label="Review"><i class="ri-edit-line"></i></button>
+        <div class="user-avatar">
+          <img src="https://ui-avatars.com/api/?name=User&background=ff6b00&color=fff" alt="User Avatar">
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content pop-in">
+      <h1>发现大学城<br><span class="gradient-text">最好吃的那家店</span></h1>
+      <p class="subtitle">汇聚深圳大学城（北大、清华、哈工大） 500+ 优质餐厅，专属于学生的吃货指南</p>
+      
+      <div class="uni-selector" id="uniSelector">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="main-container">
+    
+    <!-- Controls (Filters, Sort, View Toggle) -->
+    <section class="controls-bar glass">
+      <div class="categories-scroll" id="categoryFilters">
+        <!-- Rendered by JS -->
+      </div>
+      
+      <div class="actions">
+        <div class="dropdown">
+          <button class="dropdown-btn"><i class="ri-sort-desc"></i> 综合推荐</button>
+          <div class="dropdown-content">
+            <a href="#" data-sort="rating">评价最高</a>
+            <a href="#" data-sort="distance">距离最近</a>
+            <a href="#" data-sort="priceAsc">价格最低</a>
+          </div>
+        </div>
+        
+        <div class="view-toggles">
+          <button class="view-btn active" data-view="grid" title="卡片视图"><i class="ri-layout-grid-fill"></i></button>
+          <button class="view-btn" data-view="map" title="地图视图"><i class="ri-map-2-fill"></i></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Grid View -->
+    <section class="restaurant-grid" id="restaurantGrid">
+      <!-- Cards rendered by JS -->
+    </section>
+
+    <!-- Map View -->
+    <section class="map-view hidden" id="mapView">
+      <div class="map-container glass">
+        <div class="map-placeholder">
+          <i class="ri-map-2-line"></i>
+          <h3>全景周边导览图</h3>
+          <p>（此区域将挂载定制版 SVG 热力手绘地图，当前展示交互原型）</p>
+          <div class="mock-map-points" id="mockMapPoints"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Detail Modal -->
+  <div class="modal hidden" id="detailModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content glass-card">
+      <button class="close-modal"><i class="ri-close-line"></i></button>
+      <div class="modal-body" id="modalBody">
+        <!-- Rendered by JS -->
+      </div>
+      
+      <!-- New Review Input Section rendered by JS in modal-body -->
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>© 2026 大学城美食地图 | 深圳大学城专属版本</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
