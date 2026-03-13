@@ -293,7 +293,8 @@ function openModal(id) {
       <div class="dianping-block glass-card" style="display: flex; justify-content: space-between; align-items: center; padding: 1.2rem; margin-bottom: 1.5rem; background: rgba(255, 106, 0, 0.05); border-left: 4px solid var(--primary); border-radius: 8px;">
         <div style="display: flex; flex-direction: column; gap: 0.3rem;">
            <div style="display:flex; align-items:center; gap:0.5rem; font-weight:800; font-size:1.1rem; color: #fff;">
-             <i class="ri-store-3-fill" style="color: var(--primary); font-size: 1.2rem;"></i> 大众点评
+             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="22" height="22" style="border-radius:4px;"><rect width="1024" height="1024" fill="#f63"/><path d="M512 341.33c47.15 0 85.33-38.19 85.33-85.33S559.15 170.67 512 170.67 426.67 208.85 426.67 256 464.85 341.33 512 341.33zM754.35 628.9l-151.04-129.7-44.37-34.99c-15.36-22.19-39.25-33.71-64-33.71-23.04 0-45.65 10.67-60.59 31.15l-43.95 50.77-138.67 96.43c-21.33 14.93-26.45 44.37-11.52 65.71 14.93 21.33 44.37 26.45 65.71 11.52l104.96-72.53 26.88 126.29-113.92 79.36c-17.92 19.63-16.21 49.92 4.27 67.41 9.39 7.68 20.91 11.52 32.43 11.52 13.65 0 27.31-5.55 37.12-16.21l138.24-151.89 30.29-94.29 36.69 72.11 48.64 153.6c7.68 24.75 34.56 38.4 59.31 29.87 24.75-7.68 38.4-34.56 29.87-59.31l-32.85-104.53 66.13-46.08c21.33-14.93 26.45-44.37 11.52-65.71-10.24-14.51-26.45-22.61-43.09-22.61-5.97 0-11.95 1.28-17.49 3.84z" fill="#fff"/></svg>
+             大众点评
            </div>
            <div style="color: var(--text-muted); font-size: 0.95rem;">
              ⭐️ 综合评分 <span style="color:#fbbf24; font-weight:bold">${res.dianping.rating}</span> 
